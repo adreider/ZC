@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img alt="constra.logo" src="images/logo.png" width="100%">
+  <img alt="constra.logo" src="" width="100%">
 </p>
 
 ## 🚀 Tecnologias

@@ -80,9 +80,6 @@ namespace TI_Webapi.Controllers {
         //     }
         //     // return BadRequest ("Erro ao tentar realizar upload");
         // }
-
-
-
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Post (UserDto model) {

@@ -57,29 +57,29 @@ namespace TI_Webapi.Controllers {
             }
         }
 
-        [HttpPost ("upload")]
-        [AllowAnonymous]
-        public async Task<IActionResult> upload () {
-            try {
-                var file = Request.Form.Files[0];
-                var folderName = Path.Combine ("resources", "images");
-                var pathToSave = Path.Combine (Directory.GetCurrentDirectory (), folderName);
-                if (file.Length > 0) {
-                    var fileName = ContentDispositionHeaderValue.Parse (file.ContentDisposition).FileName;
-                    var fullPath = Path.Combine (pathToSave, fileName.Replace ("\"", " ").Trim ());
+        // [HttpPost ("upload")]
+        // [AllowAnonymous]
+        // public async Task<IActionResult> upload () {
+        //     try {
+        //         var file = Request.Form.Files[0];
+        //         var folderName = Path.Combine ("resources", "images");
+        //         var pathToSave = Path.Combine (Directory.GetCurrentDirectory (), folderName);
+        //         if (file.Length > 0) {
+        //             var fileName = ContentDispositionHeaderValue.Parse (file.ContentDisposition).FileName;
+        //             var fullPath = Path.Combine (pathToSave, fileName.Replace ("\"", " ").Trim ());
 
-                    using (var stream = new FileStream (fullPath, FileMode.Create)) {
-                        file.CopyTo (stream);
-                    }
-                }
+        //             using (var stream = new FileStream (fullPath, FileMode.Create)) {
+        //                 file.CopyTo (stream);
+        //             }
+        //         }
 
-                return Ok ();
-            } catch (System.Exception ex) {
-                return this.StatusCode (StatusCodes.Status500InternalServerError,
-                    $"Banco de dados falhou: {ex.Message}");
-            }
-            return BadRequest ("Erro ao tentar realizar upload");
-        }
+        //         return Ok ();
+        //     } catch (System.Exception ex) {
+        //         return this.StatusCode (StatusCodes.Status500InternalServerError,
+        //             $"Banco de dados falhou: {ex.Message}");
+        //     }
+        //     // return BadRequest ("Erro ao tentar realizar upload");
+        // }
 
         [HttpPost]
         [AllowAnonymous]
@@ -137,7 +137,6 @@ namespace TI_Webapi.Controllers {
                 new Claim (ClaimTypes.Email, user.Email),
                 new Claim (ClaimTypes.Actor, user.ImgPerfil),
                 // new Claim (ClaimTypes.Locality, user.UserEmpresas.),
-
             };
 
             var roles = await this.userManager.GetRolesAsync (user);
